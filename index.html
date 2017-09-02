@@ -3,19 +3,32 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
-    <script src="js/three.min.js"></script> 
+    <style>
+        body {
+            /* set margin to 0 and overflow to hidden, to
+             use the complete page */
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+    <script src="libs/three.js"></script> 
   </head>
-  <body style="padding:0;margin:0;">
-    <script>
+  <body>
+    <!-- Div which will hold the Output -->
+    <div id="WebGL-output">
+    </div>
+
+    <script type="text/javascript">
         var scene = new THREE.Scene();
         
-        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        var camera = new THREE.PerspectiveCamera(45, window.innerWidth/window.innerHeight, 0.1, 1000);
         
         var renderer = new THREE.WebGLRenderer();
+        renderer.setClearColorHex();
+        renderer.setClearColor(new THREE.Color(0x346234));
+        renderer.setSize(window.innerWidth, window.innerHeight);
         
-        renderer.setSize(window.innerWidth, window.innerHeight); 
-        
-        document.body.appendChild(renderer.domElement);
+        document.getElementById("WebGL-output").appendChild(renderer.domElement);
         var geometry = new THREE.CubeGeometry(1,1,1);
         var material = new THREE.MeshBasicMaterial({color: 0xffff00});
         var cube1 = null;
